@@ -80,15 +80,16 @@ class Component extends React.Component {
   }
 
 
-  timer() {
+timer() {
+  if (this.state.timer > 0) {  // Kiểm tra nếu timer lớn hơn 0
     let newTime = this.state.timer - 1;
     this.setState({
-      timer: newTime });
-
-    if (newTime === 0) {
-      window.clearInterval(this.interval);
-    }
+      timer: newTime
+    });
+  } else {
+    window.clearInterval(this.interval);  // Dừng interval nếu timer đã bằng 0
   }
+}
 
   rating() {
     if (this.state.wordsMastered < 15) {
@@ -118,7 +119,7 @@ class Component extends React.Component {
 activeLetters: [],
         gameStarted: true,
         wordsMastered: 0,
-        timer: 60 });
+        timer: 45 });
 
     });
     ReactDOM.findDOMNode(this).querySelector('.secret-input').focus();
